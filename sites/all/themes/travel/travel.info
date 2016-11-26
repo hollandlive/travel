@@ -31,6 +31,8 @@ stylesheets[all][] = stylesheets/style.css
 ;; Scripts
 ;;;;;;;;;;;;;;;;;;;;;
 
+scripts[] = 'bootstrap/assets/javascripts/bootstrap.min.js'
+
 scripts[] = 'bootstrap/assets/javascripts/bootstrap/affix.js'
 scripts[] = 'bootstrap/assets/javascripts/bootstrap/alert.js'
 scripts[] = 'bootstrap/assets/javascripts/bootstrap/button.js'
