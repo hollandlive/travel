@@ -1,0 +1,4 @@
+name = Travel Form
+core = 7.x
+description = Form saying Hello and asking your name
+package = Custom

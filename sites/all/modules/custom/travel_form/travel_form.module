@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * Implementation of hook_init()
+ */
+
+function travel_form_init() {
+   // drupal_set_message('Hello Visitor');
+}
+
+/**
+ * Implementation of hook_menu()
+ */
+
+function travel_form_menu() {
+    
+    $items = array();
+    
+    $items['welcomepage'] = array(
+        'title'=>'Welcome Page',
+        'description'=>'Hello Visitor',
+        'page callback'=>'drupal_get_form',
+        'page arguments'=> array('welcomeUknownVisitor'),
+        'access arguments'=> array('acccess content'),
+        'type'=>MENU_NORMAL_ITEM
+    );
+    
+    return $items;
+}
+
+/**
+ * Implementation of form API
+ */
+
+function welcomeUknownVisitor() {
+    
+    $form = array();
+    
+    $form['visitor'] = array(
+      '#type'=>'textfield',
+        '#title'=>'Enter your name'      
+    );
+    
+    $form['submit'] = array(
+        '#type'=>'submit',
+        '#value'=>'SUBMIT'
+    );
+    
+    $form['#submit'][]='welcomeUknownVisitor_submit';
+ 
+    return $form;
+}
+
+function welcomeUknownVisitor_submit($form, &$form_state) {
+    
+    if($form_state['values']['visitor'] == ""){
+        
+        form_set_error('visitor', 'Dear visitor the name field can not stay empty');
+        //drupal_set_message("Dear you gotta name or?");
+        
+    } else {
+    
+    drupal_set_message('Welcome ' . $form_state['values']['visitor'] . '!');
+    
+}
+}
