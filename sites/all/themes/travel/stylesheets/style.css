@@ -10,9 +10,29 @@
  * You can copy existing variables directly from the following file:
  * ./THEMENAME/bootstrap/assets/stylesheets/_variables.scss
  */
-/* line 16, ../sass/_default-variables.scss */
-.page-header {
-  color: red;
+/*.page-header {
+    color: red;
+}*/
+/* line 30, ../sass/_default-variables.scss */
+.navbar.container {
+  width: 100%;
+  background-color: #f4a742;
+  border-radius: 0px;
+  height: 35px;
+}
+
+/* line 39, ../sass/_default-variables.scss */
+.jumbotron {
+  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 10, 0.25)), url(../images/ny1.jpg);
+  background-size: 100% auto;
+  background-position: center top;
+}
+
+/* line 58, ../sass/_default-variables.scss */
+.footer.container {
+  width: 100%;
+  background-color: #9eb5fa;
+  height: 150px;
 }
 
 /*!

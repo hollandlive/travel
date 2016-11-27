@@ -13,6 +13,51 @@
 // Set the proper directory for the Bootstrap Glyphicon font.
 $icon-font-path: '../bootstrap/assets/fonts/bootstrap/';
 
-.page-header {
+/*.page-header {
     color: red;
+}*/
+
+//colors
+$light-blue: #9eb5fa;
+$orange: #f4a742;
+$dark-orange: #f48342;
+
+//fonts
+
+
+//header
+.navbar {
+    &.container {
+        width: 100%;
+        background-color: $orange;
+        border-radius: 0px;
+        height: 35px;
+    }
+}
+
+//jumbotron
+.jumbotron {
+  background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+      rgba(255, 0, 0, 0.45), 
+      rgba(255, 0, 10, 0.25)
+    ),
+    /* bottom, image */
+    url(../images/ny1.jpg);
+  background-size: 100% auto;
+  background-position: center top;
+  
+  
+}
+
+
+
+//footer
+.footer {
+    &.container {
+        width: 100%;
+        background-color: $light-blue;
+        height: 150px;
+    }
 }
