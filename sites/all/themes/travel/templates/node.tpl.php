@@ -79,6 +79,11 @@
  * @ingroup templates
  */
 ?>
+    <div class="row"><?php krumo($node); ?></div>
+    
+   <div class="row"><?php print render($node->field_place_city['und'][0]['value']); ?></div>
+   <div class="row"><?php print render($node->field_place_country['und'][0]['value']); ?></div>
+
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php if ((!$page && !empty($title)) || !empty($title_prefix) || !empty($title_suffix) || $display_submitted): ?>
   <header>

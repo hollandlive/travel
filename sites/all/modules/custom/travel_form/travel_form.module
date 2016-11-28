@@ -22,8 +22,7 @@ function travel_form_menu() {
         'page callback'=>'drupal_get_form',
         'page arguments'=> array('welcomeUknownVisitor'),
         'access arguments'=> array('acccess content'),
-        //'type'=>MENU_NORMAL_ITEM
-        'type'=>'welcomepage'
+        'type'=>MENU_NORMAL_ITEM
     );
     
     return $items;
@@ -66,26 +65,21 @@ function welcomeUknownVisitor_submit($form, &$form_state) {
 }
 
 
-function travel_form_block_info() {
-  $blocks['welcomepage'] = array(
-    'info' => t('Welcomepage Block'),
-  );
-  return $blocks;
-}
+//function travel_form_block_info() {
+//  $blocks['welcomepage'] = array(
+//    'info' => t('Welcomepage Block'),
+//  );
+//  return $blocks;
+//}
 
 
-function travel_form_block_view($delta = '') {
-  $block = array();
-
-  switch ($delta) {
-    case 'welcomepage':
-      $block['subject'] = t('Welcome Page Form');
-      $block['content'] = array(
-        '#theme' => 'feed_icon',
-        '#url' => 'rss.xml',
-        '#title' => t('Syndicate'),
-      );
-      break;
-  }
-  return $block;
-}
+//function travel_form_block_view($delta='')
+//{
+//  switch($delta) {
+//    case 'welcomepage':
+//      $block['subject'] = null; // Most forms don't have a subject 
+//      $block['content'] = drupal_get_form('welcomeUknownVisitor');
+//      break;
+//   }
+//   return $block;
+// }
