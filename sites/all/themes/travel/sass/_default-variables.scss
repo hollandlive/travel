@@ -13,18 +13,38 @@
 // Set the proper directory for the Bootstrap Glyphicon font.
 $icon-font-path: '../bootstrap/assets/fonts/bootstrap/';
 
-/*.page-header {
-    color: red;
-}*/
 
-//colors
-$light-blue: #9eb5fa;
-$orange: #f4a742;
-$dark-orange: #f48342;
-
+@import 'includes/base.scss';
 //fonts
+@import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
+$font-head:    'Anton', sans-serif;
+$font: 'Roboto', sans-serif;
+
+//normalizers:
+h1, h2 {
+    a {
+        font-family: $font-head;
+        color: $dark-orange;
+        text-decoration: none;
+        }
+        &:hover {
+            text-decoration: none;
+        }
+}
+//text
+p {
+    font-family: $font;
+    color: $gray;
+}
+
+/********Links***********************************/
 
 
+
+
+
+
+/*******************************************/
 //header
 .navbar {
     &.container {
@@ -32,9 +52,11 @@ $dark-orange: #f48342;
         background-color: $orange;
         border-radius: 0px;
         height: 35px;
+
     }
 }
 
+#navbar.container { max-width: 100%; }
 //jumbotron
 .jumbotron {
   background: 
@@ -45,13 +67,12 @@ $dark-orange: #f48342;
     ),
     /* bottom, image */
     url(../images/ny1.jpg);
-  background-size: 100% auto;
+  background-size: 80% auto;
   background-position: center top;
-  
-  
+  .container {
+      border-radius: 0px;
+  }
 }
-
-
 
 //footer
 .footer {
@@ -59,5 +80,6 @@ $dark-orange: #f48342;
         width: 100%;
         background-color: $light-blue;
         height: 150px;
+        box-shadow: 10px 10px 50px grey;
     }
 }

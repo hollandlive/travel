@@ -10,10 +10,36 @@
  * You can copy existing variables directly from the following file:
  * ./THEMENAME/bootstrap/assets/stylesheets/_variables.scss
  */
-/*.page-header {
-    color: red;
-}*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 28, 2016, 11:26:20 AM
+    Author     : artem
+*/
+@import url("https://fonts.googleapis.com/css?family=Anton|Roboto");
+/* line 25, ../sass/_default-variables.scss */
+h1 a, h2 a {
+  font-family: "Anton", sans-serif;
+  color: #f48342;
+  text-decoration: none;
+}
 /* line 30, ../sass/_default-variables.scss */
+h1:hover, h2:hover {
+  text-decoration: none;
+}
+
+/* line 35, ../sass/_default-variables.scss */
+p {
+  font-family: "Roboto", sans-serif;
+  color: #949fb2;
+}
+
+/********Links***********************************/
+/*******************************************/
+/* line 50, ../sass/_default-variables.scss */
 .navbar.container {
   width: 100%;
   background-color: #f4a742;
@@ -21,18 +47,28 @@
   height: 35px;
 }
 
-/* line 39, ../sass/_default-variables.scss */
-.jumbotron {
-  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 10, 0.25)), url(../images/ny1.jpg);
-  background-size: 100% auto;
-  background-position: center top;
+/* line 59, ../sass/_default-variables.scss */
+#navbar.container {
+  max-width: 100%;
 }
 
-/* line 58, ../sass/_default-variables.scss */
+/* line 61, ../sass/_default-variables.scss */
+.jumbotron {
+  background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 10, 0.25)), url(../images/ny1.jpg);
+  background-size: 80% auto;
+  background-position: center top;
+}
+/* line 72, ../sass/_default-variables.scss */
+.jumbotron .container {
+  border-radius: 0px;
+}
+
+/* line 79, ../sass/_default-variables.scss */
 .footer.container {
   width: 100%;
   background-color: #9eb5fa;
   height: 150px;
+  box-shadow: 10px 10px 50px grey;
 }
 
 /*!
@@ -3845,7 +3881,7 @@ output {
   padding-top: 7px;
   font-size: 14px;
   line-height: 1.42857;
-  color: #555555;
+  color: #949fb2;
 }
 
 /* line 114, ../bootstrap/assets/stylesheets/bootstrap/_forms.scss */
@@ -3856,7 +3892,7 @@ output {
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857;
-  color: #555555;
+  color: #949fb2;
   background-color: #fff;
   background-image: none;
   border: 1px solid #ccc;
@@ -5356,7 +5392,7 @@ tbody.collapse.in {
   font-size: 14px;
   font-weight: normal;
   line-height: 1;
-  color: #555555;
+  color: #949fb2;
   text-align: center;
   background-color: #eeeeee;
   border: 1px solid #ccc;
@@ -5529,7 +5565,7 @@ tbody.collapse.in {
 }
 /* line 96, ../bootstrap/assets/stylesheets/bootstrap/_navs.scss */
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  color: #555555;
+  color: #949fb2;
   background-color: #fff;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
@@ -9274,7 +9310,7 @@ table tr.error {
 .form-group.has-error textarea,
 .form-group.has-error select,
 .form-group.has-error .uneditable-input {
-  color: #555555;
+  color: #949fb2;
 }
 /* line 376, ../sass/_overrides.scss */
 .form-group.error .help-block, .form-group.error .help-inline,
