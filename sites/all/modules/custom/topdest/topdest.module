@@ -13,35 +13,22 @@ function topdest_block_info() {
 }
 
 /**
- * Custom function to retrieve cities of Places
+ * Custom function to retrieve countries of Places
  */
 
-function topdest_current_city(){
+function topdest_current_country(){
     
-      $nids = db_select('node', 'n')
+    $nids = db_select('node', 'n')
     ->fields('n', array('nid'))
     ->condition('type', 'place', '=')
     ->execute()
     ->fetchCol();
   
-  // Get all of the article nodes.
+  // Get all of the Places nodes.
   $result = node_load_multiple($nids);
   
- // foreach ($result as $field) {
-      
-      //$field = array();
-      
-      //print_r($field->field_place_country['und'][0]['value']);
-      //$country = $field->field_place_country['und'][0]['value'];
-      //$city = $field->field_place_city['und'][0]['value'];
- // }
-  
 return $result;
-    
-//    $node_type = 'place';
-//    $result = db_query("SELECT nid FROM node WHERE type = :nodeType ", array(':nodeType'=>$node_type));
-//    print_r($result);
-//    return $result;
+
 }
 
 /**
@@ -52,23 +39,15 @@ function topdest_block_view($delta = ''){
     switch($delta) {
         case 'topdest':
             $block['subject'] = t('Top Destinations');
-            $result = topdest_current_city();
-            //print_r($result->field_place_country['und'][0]['value']);
-         $items = array();
-               foreach ($result as $node) {  
-                   
-                   $items[] = array (
-                    //'data' => l($node->field_place_country['und'][0]['value'], 'node/' .$node->nid),
-
-                    //'data' => $node->field_place_country['und'][0]['value'],
-                   // 'data' => $node->field_place_city['und'][0]['value']      
-                );
-             }
-                
-            $block['content'] = theme('item_list', array('items' => $items));
-            //print_r($items);         
-            //$block['content'] = $items[];
-
+            $result = topdest_current_country();
+                 $items = array();
+                 
+                   foreach ($result as $node) {  
+                       $items[] = array (
+                        'data' => l($node->field_place_country['und'][0]['value'], 'node/' .$node->nid),   
+                        );
+                    }
+                $block['content'] = theme('item_list', array('items' => $items));
             break;
     }
     return $block;
