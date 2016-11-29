@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * Implements hook_block_info()
+ */
+
+function topcity_block_info() {
+  $blocks['topcity'] = array(
+    'info' => t('Top Cities'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Custom function to retrieve countries of Places
+ */
+
+function topcity_current_city(){
+    
+    $nids = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('type', 'place', '=')
+    ->execute()
+    ->fetchCol();
+  
+  // Get all of the Places nodes.
+  $result = node_load_multiple($nids);
+  
+return $result;
+
+}
+
+/**
+ * Implements hook_block_view()
+ */
+
+function topcity_block_view($delta = ''){
+    switch($delta) {
+        case 'topcity':
+            $block['subject'] = t('Top Cities');
+            $result = topcity_current_city();
+                 $items = array();
+                 
+                   foreach ($result as $node) {  
+                       $items[] = array (
+                        'data' => l($node->field_place_city['und'][0]['value'], 'node/' .$node->nid),   
+                        );
+                    }
+                $block['content'] = theme('item_list', array('items' => $items));
+            break;
+    }
+    return $block;
+}

@@ -20,18 +20,34 @@ and open the template in the editor.
     Author     : artem
 */
 @import url("https://fonts.googleapis.com/css?family=Anton|Roboto");
-/* line 25, ../sass/_default-variables.scss */
+/* line 3, ../sass/includes/_frontpage.scss */
+.place-image {
+  display: block;
+  position: relative;
+  float: left;
+  margin: 5px 5px;
+  width: 260px;
+  height: auto;
+}
+
+/* line 12, ../sass/includes/_frontpage.scss */
+.place-title {
+  display: block;
+  position: relative;
+}
+
+/* line 27, ../sass/_default-variables.scss */
 h1 a, h2 a {
   font-family: "Anton", sans-serif;
   color: #f48342;
   text-decoration: none;
 }
-/* line 30, ../sass/_default-variables.scss */
+/* line 32, ../sass/_default-variables.scss */
 h1:hover, h2:hover {
   text-decoration: none;
 }
 
-/* line 35, ../sass/_default-variables.scss */
+/* line 37, ../sass/_default-variables.scss */
 p {
   font-family: "Roboto", sans-serif;
   color: #949fb2;
@@ -39,7 +55,7 @@ p {
 
 /********Links***********************************/
 /*******************************************/
-/* line 50, ../sass/_default-variables.scss */
+/* line 52, ../sass/_default-variables.scss */
 .navbar.container {
   width: 100%;
   background-color: #f4a742;
@@ -47,23 +63,23 @@ p {
   height: 35px;
 }
 
-/* line 59, ../sass/_default-variables.scss */
+/* line 61, ../sass/_default-variables.scss */
 #navbar.container {
   max-width: 100%;
 }
 
-/* line 61, ../sass/_default-variables.scss */
+/* line 63, ../sass/_default-variables.scss */
 .jumbotron {
   background: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 10, 0.25)), url(../images/ny1.jpg);
   background-size: 80% auto;
   background-position: center top;
 }
-/* line 72, ../sass/_default-variables.scss */
+/* line 74, ../sass/_default-variables.scss */
 .jumbotron .container {
   border-radius: 0px;
 }
 
-/* line 79, ../sass/_default-variables.scss */
+/* line 81, ../sass/_default-variables.scss */
 .footer.container {
   width: 100%;
   background-color: #9eb5fa;
