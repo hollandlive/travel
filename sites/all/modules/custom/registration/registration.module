@@ -10,6 +10,11 @@ function registration_permission() {
             'title' => t('Submit registration'),
             'description' => t('Submit the registration form'),
         ),
+        'access registration submissions' => array (
+            'title' => t('access registration submissions'),
+            'description' => t('Access registration form submissions'),
+        ),
+
     );
 }
 
@@ -27,6 +32,12 @@ function registration_menu() {
         'access arguments'=> array('submit registration'),
         'page callback'=>'drupal_get_form',
         'page arguments'=> array('registration_form'),
+    );
+     $items['registration-submissions'] = array(
+        'title'=>'Registration Sumissions Page',
+        'type'=>MENU_NORMAL_ITEM,
+        'access arguments'=> array('access registration submissions'),
+        'page callback'=>'registration_submissions',
     );
     return $items;
 }
@@ -75,14 +86,17 @@ function registration_form($form, &$form_state) {
         '#default_value' => '',
     );
     
-     $form['avatar'] = array (
-        '#type' => 'file',
-        '#title' =>t('Picture'),
-        '#description' => t('Attach picture'),
-        '#required' => FALSE,
-        '#default_value' => '',
-    );
-    
+     $form['avatar'] = array(
+    '#type' => 'managed_file',
+    '#name' => 'avatar',
+    '#title' => t('Block image'),
+    '#size' => 40,
+    '#description' => t("Image should be less than 400 pixels wide and in JPG format."),
+    '#upload_location' => 'public://'
+  );
+
+     
+     
     $form['submit'] = array (
         '#type' => 'submit',
         '#value' => t('Add registration'),
@@ -92,7 +106,7 @@ function registration_form($form, &$form_state) {
 }
 
 /**
- * Validation of registratio form
+ * Validation of registration form
  */
 
 function registration_form_validate($form, &$form_state) {
@@ -103,3 +117,65 @@ function registration_form_validate($form, &$form_state) {
     }
     return TRUE;
 }
+
+/**
+ * Submit handler for inserting data into DB
+ */
+
+function registration_form_submit($form, &$form_state) {
+    
+    $file = file_load($form_state['values']['avatar']);
+    
+    $file->status = FILE_STATUS_PERMANENT;
+    
+    $file_saved =file_save($file);
+    
+        header("Content-Type: image/jpg");
+print $file;
+    
+        // Record that the module is using the file. 
+    file_usage_add($file_saved, 'registration', 'avatar', $file_saved->fid); 
+
+    
+    $reg_id = db_insert('registration')
+            ->fields (array(
+                'age' => $form_state['values']['age'],
+                'firstname' => $form_state['values']['firstname'],
+                'lastname' => $form_state['values']['lastname'],
+                'summary' => $form_state['values']['summary'],
+                'avatar' => $form_state['values']['avatar'],
+            ))
+            ->execute();
+            drupal_set_message(t('Your registration was submitted'));
+}
+
+/**
+ * View the registrations
+ */
+
+function registration_submissions() {
+    //$results = db_query("SELECT * FROM {registration}"); OR
+    
+    $query = db_select('registration', 'reg');
+    $query
+            ->fields('reg', array('reg_id', 'age', 'firstname', 'lastname', 'summary', 'avatar'))
+            ->range(0,50)
+            ->orderBy('reg.reg_id');
+    $results = $query->execute();
+    $header = array(t('ID'), t('Age'), t('First Name'), t('Last Name'), t('Summary'), t('Avatar'));
+    $rows = array();
+    
+    foreach ($results as $result) {
+        $rows[] = array(
+            $result->reg_id,
+            $result->age,
+            $result->firstname,
+            $result->lastname,
+            $result->summary,
+            //print ($result->avatar)
+        );
+    }
+    
+    return theme('table', array('header' => $header, 'rows'=>$rows));
+}
+
