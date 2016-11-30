@@ -1,0 +1,105 @@
+<?php
+
+/**
+ * Implements hook_permission()
+ */
+
+function registration_permission() {
+    return array (
+        'submit registration' => array (
+            'title' => t('Submit registration'),
+            'description' => t('Submit the registration form'),
+        ),
+    );
+}
+
+/**
+ * Implements hook_menu()
+ */
+
+function registration_menu() {
+    
+    $items = array();
+    
+    $items['registration'] = array(
+        'title'=>'Registration Page',
+        'type'=>MENU_NORMAL_ITEM,
+        'access arguments'=> array('submit registration'),
+        'page callback'=>'drupal_get_form',
+        'page arguments'=> array('registration_form'),
+    );
+    return $items;
+}
+
+/**
+ * Registration form
+ */
+
+function registration_form($form, &$form_state) {
+    
+    $form['age'] = array (
+        '#type' => 'textfield',
+        '#title' =>t('Age'),
+        '#size' => 10,
+        '#maxlength' => 10,
+        '#required' => TRUE,
+        '#description' => t('Please enter your age'),
+        '#default_value' => '',
+    );
+    
+    $form['firstname'] = array (
+        '#type' => 'textfield',
+        '#title' =>t('First name'),
+        '#size' => 32,
+        '#maxlength' => 128,
+        '#required' => TRUE,
+        '#description' => t('Please enter your first name'),
+        '#default_value' => '',
+    );
+    
+    $form['lastname'] = array (
+        '#type' => 'textfield',
+        '#title' =>t('Last name'),
+        '#size' => 50,
+        '#maxlength' => 128,
+        '#required' => TRUE,
+        '#description' => t('Please enter your last name'),
+        '#default_value' => '',
+    );
+    
+    $form['summary'] = array (
+        '#type' => 'textarea',
+        '#title' =>t('Summary'),
+        '#description' => t('Provide summary please'),
+        '#required' => TRUE,
+        '#default_value' => '',
+    );
+    
+     $form['avatar'] = array (
+        '#type' => 'file',
+        '#title' =>t('Picture'),
+        '#description' => t('Attach picture'),
+        '#required' => FALSE,
+        '#default_value' => '',
+    );
+    
+    $form['submit'] = array (
+        '#type' => 'submit',
+        '#value' => t('Add registration'),
+    );
+    
+    return $form;
+}
+
+/**
+ * Validation of registratio form
+ */
+
+function registration_form_validate($form, &$form_state) {
+    //print('<pre>' . print_r($form_state['values'], 1) . '</pre>'); die();
+    if(!is_numeric($form_state['values']['age'])) {
+        form_set_error('age', t('You must enter valid age'));
+        return FALSE;
+    }
+    return TRUE;
+}

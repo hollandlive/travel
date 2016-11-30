@@ -6,3 +6,10 @@ function travel_preprocess_page(&$vars) {
         $vars['theme_hook_suggestions'][] ='fucky__' . $vars['node']->type;
     }
 }
+
+function theme_travel_hook($variables) {
+    $parameter = $variables['parameter'];
+    if (!empty($parameter)) {
+        return '<div class="my-theme-hook">' . $parameter . '</div>';
+    }
+}

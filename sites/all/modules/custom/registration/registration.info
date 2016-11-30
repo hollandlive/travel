@@ -1,0 +1,4 @@
+name = Registration
+core = 7.x
+description = Registration form for referents on the web-site
+package = Custom

@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * Implements hook_schema()
+ */
+
+function registration_schema() {
+    $schema = array();
+    //giving a name to a DB table registration
+  $schema['registration'] = array(
+    'description' => 'The base table for referents registrations',
+    'fields' => array(
+      'reg_id' => array(
+        'description' => 'The primary identifier for registrations',
+          //type serial -> autoincremental
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'age' => array(
+        'description' => 'A field for storing age',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+        
+        
+      'firstname' => array(
+        'description' => 'Firstname',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+        
+         'lastname' => array(
+        'description' => 'Lastname',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+        
+          'summary' => array(
+        'description' => 'Summary',
+        'type' => 'text',
+        'not null' => TRUE,
+      ),
+        
+         'avatar' => array(
+       'description' => 'Picture of referent',
+      'type' => 'longblob',
+             'serialize' => TRUE,
+      'not null' => TRUE,
+   ),
+    ),
+    'indexes' => array(
+      'registration' => array('reg_id'),
+    ),
+//    'unique keys' => array(
+//      'nid_vid' => array('nid', 'vid'),
+//      'vid' => array('vid'),
+//    ),
+    // For documentation purposes only; foreign keys are not created in the
+    // database.
+//    'foreign keys' => array(
+//      'node_revision' => array(
+//        'table' => 'node_revision',
+//        'columns' => array('vid' => 'vid'),
+//      ),
+//      'node_author' => array(
+//        'table' => 'users',
+//        'columns' => array('uid' => 'uid'),
+//      ),
+//    ),
+    'primary key' => array('reg_id'),
+  );
+  return $schema;
+}

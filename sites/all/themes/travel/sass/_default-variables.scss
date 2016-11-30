@@ -23,15 +23,16 @@ $font-head:    'Anton', sans-serif;
 $font: 'Roboto', sans-serif;
 
 //normalizers:
-h1, h2 {
+h1, h2, h3 {
     a {
         font-family: $font-head;
         color: $dark-orange;
         text-decoration: none;
-        }
-        &:hover {
+        &:hover, &:focus {
             text-decoration: none;
-        }
+            color: $orange;
+            }
+       }
 }
 //text
 p {
